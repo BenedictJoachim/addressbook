@@ -2,8 +2,11 @@ import { getContacts } from "../data";
 import { Form, Link, Outlet } from "react-router";
 import type { Route } from "../+types/root";
 
-export async function clientLoader() {
+export async function loader() {
   const contacts = await getContacts();
+  if (!contacts) {
+    throw new Response("No contacts", { status: 404 });
+  }
   return { contacts };
 }
 
