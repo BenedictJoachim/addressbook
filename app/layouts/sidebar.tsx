@@ -1,5 +1,5 @@
 import { getContacts } from "../data";
-import { Form, Link, Outlet } from "react-router";
+import { Form, Link, NavLink, Outlet } from "react-router";
 import type { Route } from "../+types/root";
 
 export async function loader() {
@@ -39,7 +39,7 @@ export default function SidebarLayout({ loaderData }: Route.ComponentProps) {
               <ul>
                 {contacts.map((contact) => (
                   <li key={contact.id}>
-                    <Link to={`contacts/${contact.id}`}>
+                    <NavLink to={`contacts/${contact.id}`}>
                       {contact.first || contact.last ? (
                         <>
                           {contact.first} {contact.last}
@@ -50,7 +50,7 @@ export default function SidebarLayout({ loaderData }: Route.ComponentProps) {
                       {contact.favorite ? (
                         <span>*</span>
                       ) : null}
-                    </Link>
+                    </NavLink>
                   </li>
                 ))}
               </ul>
